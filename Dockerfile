@@ -1,6 +1,30 @@
 ARG PYTHON_VERSION=3.10
 
-FROM python:${PYTHON_VERSION} as interactive
+FROM python:${PYTHON_VERSION} as base
+
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
+        ocl-icd-libopencl1
+
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
+FROM python:${PYTHON_VERSION}-slim as base-slim
+
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
+        ocl-icd-libopencl1
+
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
+FROM base as interactive
 
 ENV WORKDIR=/environment
 WORKDIR ${WORKDIR}
@@ -15,7 +39,7 @@ LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --publish 8888:8888 --se
 
 ENTRYPOINT ["jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
 
-FROM python:${PYTHON_VERSION}-slim as processing
+FROM base-slim as processing
 
 ENV WORKDIR=/environment
 WORKDIR ${WORKDIR}
@@ -30,7 +54,7 @@ LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --volume .:/outputs --vo
 
 ENTRYPOINT ["papermill", "notebook.ipynb", "/outputs/notebook.ipynb", "--parameters", "OUTPUT_PREFIX", "/outputs",  "--parameters", "INPUT_PREFIX", "/inputs"]
 
-FROM python:${PYTHON_VERSION}-slim as service
+FROM base-slim as service
 
 ENV WORKDIR=/environment
 WORKDIR ${WORKDIR}

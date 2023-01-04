@@ -1,7 +1,10 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
 	"name": "Python 3 Developer Container",
-	"image": "python:3.10",
+	"build": {
+		"dockerfile": "../Dockerfile",
+		"target": "base"
+	},
 	"remoteEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}"
 	},
@@ -31,7 +34,7 @@
 	"initializeCommand": "bash -c 'for i in $HOME/.inputrc; do [ -f $i ] || touch $i; done'",
 	"runArgs": [
 		"--net=host",
-		"--security-opt=label=type:container_runtime_t"
+		"--security-opt=label=disable"
 	],
 	"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind",
