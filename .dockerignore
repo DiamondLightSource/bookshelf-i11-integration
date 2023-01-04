@@ -1,0 +1,5 @@
+.devcontainer
+.git
+.ipynb_checkpoints
+.gitignore
+Dockerfile
