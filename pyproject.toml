@@ -4,7 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "notebook_env"
-dependencies = ["numpy", "pyFAI", "h5py", "matplotlib", "tqdm[notebook]"]
+dependencies = [
+    "numpy",
+    "pyFAI",
+    "h5py",
+    "matplotlib",
+    "tqdm[notebook]",
+    "stomp.py",
+]
 dynamic = ["version"]
 
 [project.optional-dependencies]
