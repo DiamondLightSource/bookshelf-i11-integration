@@ -11,7 +11,7 @@ RUN pip install --upgrade .[interactive]
 
 EXPOSE 8888
 
-CMD ["jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
+ENTRYPOINT ["jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
 
 FROM python:${PYTHON_VERSION}-slim as processing
 
