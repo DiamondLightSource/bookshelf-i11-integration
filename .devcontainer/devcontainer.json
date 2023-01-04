@@ -10,11 +10,12 @@
 		"ghcr.io/devcontainers/features/common-utils:1": {
 			"username": "none",
 			"upgradePackages": false
-		}
+		},
+		"ghcr.io/devcontainers/features/python:1": "none"
 	},
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"python.defaultInterpreterPath": "/usr/bin/python"
+		"python.defaultInterpreterPath": "/usr/local/bin/python"
 	},
 	"customizations": {
 		"vscode": {
