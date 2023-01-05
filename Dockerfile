@@ -35,7 +35,7 @@ RUN pip install --upgrade .[interactive]
 
 EXPOSE 8888
 
-LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --publish 8888:8888 --security-opt=label=disable IMAGE"
+LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --publish 8888:8888 IMAGE"
 
 ENTRYPOINT ["jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
 
@@ -50,7 +50,7 @@ RUN pip install --upgrade .[processing]
 
 VOLUME /inputs /outputs
 
-LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --volume .:/outputs --volume .:/inputs --security-opt=label=disable IMAGE"
+LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --volume .:/outputs --volume .:/inputs --security-opt=label=type:container_runtime_t IMAGE"
 
 ENTRYPOINT ["papermill", "notebook.ipynb", "/outputs/notebook.ipynb", "--parameters", "OUTPUT_PREFIX", "/outputs",  "--parameters", "INPUT_PREFIX", "/inputs"]
 
@@ -67,6 +67,6 @@ ENV NOTEBOOK_PATH="notebook.ipynb"
 
 EXPOSE 8000
 
-LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --publish 8000:8000 --security-opt=label=disable IMAGE"
+LABEL uk.ac.diamond.bookshelf.runlabel="podman run --rm --publish 8000:8000 IMAGE"
 
 ENTRYPOINT ["papermill_service"]
