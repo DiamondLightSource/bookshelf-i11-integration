@@ -18,7 +18,7 @@ This will query the GitHub API and catalogue all containers in the DiamondLightS
 ### Interactive (local)
 
 ```
-podman run --publish 8888:8888 ghcr.io/garryod/bookshelf-template/interactive:latest
+podman run --publish 8888:8888 ghcr.io/diamondlightsource/bookshelf-template/interactive:latest
 ```
 or
 ```
@@ -29,12 +29,12 @@ bookshelf-i11-integration-interactive
 ### Interactive (hosted)
 
 1.  Go to https://jupyterhub.diamond.ac.uk/hub/home
-2.  'Start My Server' with `CONTAINER_IMAGE=ghcr.io/garryod/bookshelf-i11-integration/interactive:latest`
+2.  'Start My Server' with `CONTAINER_IMAGE=ghcr.io/diamondlightsource/bookshelf-i11-integration/interactive:latest`
 
 ### Processing
 
 ```
-podman run --volume .:/outputs --volume .:/inputs --security-opt=label=type:container_runtime_t ghcr.io/garryod/bookshelf-template/processing:latest
+podman run --volume .:/outputs --volume .:/inputs --security-opt=label=type:container_runtime_t ghcr.io/diamondlightsource/bookshelf-template/processing:latest
 ```
 or
 ```
@@ -45,5 +45,5 @@ bookshelf-i11-integration-processing
 ### Service (local)
 
 ```
-podman run --publish 8000:8000 ghcr.io/garryod/bookshelf-template/service:latest
+podman run --publish 8000:8000 ghcr.io/diamondlightsource/bookshelf-template/service:latest
 ```
