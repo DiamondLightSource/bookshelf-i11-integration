@@ -2,8 +2,8 @@
 
 This notebook is used to perform azimutal integration of i11 data. This repo follows the bookshelf structure, meaning it will be automatically deployed in three varieties:
 
-1. An interactive - jupyterlab - environment, runnable both locally and hosted on the hosted JupyterLab instance
-2. A headless processing image, runnable both locally and as a cluster job
+1. An interactive - jupyterlab - environment, for running both locally and hosted on the hosted JupyterLab instance
+2. A headless processing image, for running both locally and as a cluster job
 3. A service, which can be hosted on the k8s cluster, and accessed via a REST API
 
 ## Releasing a version
