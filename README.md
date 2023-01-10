@@ -1,4 +1,4 @@
-# i18 Integration Notebook
+# i11 Integration Notebook
 
 This notebook is used to perform azimutal integration of i11 data. This repo follows the bookshelf structure, meaning it will be automatically deployed in three varieties:
 
