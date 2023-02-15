@@ -45,5 +45,5 @@
 	// make the workspace folder the same inside and outside of the container
 	"workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
 	"workspaceFolder": "${localWorkspaceFolder}",
-	"postCreateCommand": "pip install -e .[interactive,processing,service]"
+	"postCreateCommand": "pip install -e .[interactive,processing]"
 }

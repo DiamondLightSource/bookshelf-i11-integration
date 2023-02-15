@@ -5,7 +5,7 @@ FROM python:${PYTHON_VERSION} as base
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
-        ocl-icd-libopencl1
+    ocl-icd-libopencl1
 
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
@@ -17,7 +17,7 @@ FROM python:${PYTHON_VERSION}-slim as base-slim
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
-        ocl-icd-libopencl1
+    ocl-icd-libopencl1
 
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
@@ -49,18 +49,3 @@ RUN pip install --upgrade .[processing]
 VOLUME /inputs /outputs
 
 ENTRYPOINT ["papermill", "notebook.ipynb", "/outputs/notebook.ipynb", "--parameters", "OUTPUT_PREFIX", "/outputs",  "--parameters", "INPUT_PREFIX", "/inputs"]
-
-FROM base-slim as service
-
-ENV WORKDIR=/environment
-WORKDIR ${WORKDIR}
-
-COPY . ${WORKDIR}
-
-RUN pip install --upgrade .[service]
-
-ENV NOTEBOOK_PATH="notebook.ipynb"
-
-EXPOSE 8000
-
-ENTRYPOINT ["papermill_service"]
