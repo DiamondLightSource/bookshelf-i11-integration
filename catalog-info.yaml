@@ -6,5 +6,5 @@ metadata:
     github.com/project-slug: DiamondLightSource/bookshelf-i11-integration
 spec:
   type: other
-  lifecycle: unknown
+  lifecycle: experimental
   owner: user:enu43627
