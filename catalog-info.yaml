@@ -2,6 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: bookshelf-i11-integration
+  title: i11 Integration Notebook
   annotations:
     github.com/project-slug: DiamondLightSource/bookshelf-i11-integration
 spec:
